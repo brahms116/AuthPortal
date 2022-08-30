@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "AuthPortalDemoClient": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "USERPOOL_ID": "ap-southeast-2_5jAJgERto",
+        "CLIENT_ID": "7g5uccah53e2mem9klogs34utn",
+        "CLIENT_SECRET": "pjm62cbrsftp9oeiklp5suopg8fhggjodbj1dklnqbq7bm313bh"
+      }
+    }
+  }
+}
