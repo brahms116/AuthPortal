@@ -23,7 +23,7 @@ namespace AuthLibrary
 			return Convert.ToBase64String(signature);
 		}
 
-		public CognitoUserRepository(CognitoUserRepositoryConfig? config)
+		public CognitoUserRepository(CognitoUserRepositoryConfig config)
 		{
 			if (config is null)
 			{
