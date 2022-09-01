@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthPortalApi", "AuthPortalApi\AuthPortalApi.csproj", "{8C058692-1520-4E6C-AFBA-C0850F0EB0A0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwsAuthTest", "AwsAuthTest\AwsAuthTest.csproj", "{F89B85A7-5A91-4827-B0DD-42307166BB44}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthPortalDemoClient", "AuthPortalDemoClient\AuthPortalDemoClient.csproj", "{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthLibrary", "AuthLibrary\AuthLibrary.csproj", "{0430E353-CB06-40E8-8FB1-624E7DBB3661}"
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8C058692-1520-4E6C-AFBA-C0850F0EB0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C058692-1520-4E6C-AFBA-C0850F0EB0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C058692-1520-4E6C-AFBA-C0850F0EB0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C058692-1520-4E6C-AFBA-C0850F0EB0A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F89B85A7-5A91-4827-B0DD-42307166BB44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F89B85A7-5A91-4827-B0DD-42307166BB44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F89B85A7-5A91-4827-B0DD-42307166BB44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F89B85A7-5A91-4827-B0DD-42307166BB44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}.Release|Any CPU.ActiveCfg = Release|Any CPU
