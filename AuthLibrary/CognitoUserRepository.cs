@@ -138,6 +138,14 @@ namespace AuthLibrary
 			{
 				throw;
 			}
+			catch (NotAuthorizedException ex)
+			{
+				throw new IncorrectCredentialsException("Incorrect Creds", ex);
+			}
+			catch (UserNotFoundException ex)
+			{
+				throw new IncorrectUsernameException("Incorrect Username", ex);
+			}
 			catch (Exception ex)
 			{
 
@@ -256,7 +264,7 @@ namespace AuthLibrary
 			{
 				await _provider.ConfirmForgotPasswordAsync(request);
 			}
-			
+
 			catch (InvalidPasswordException ex)
 			{
 				throw new PasswordValidationException("Password failed to meet constraints", ex);

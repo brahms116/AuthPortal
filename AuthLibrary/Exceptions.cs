@@ -40,6 +40,45 @@ public class NewPasswordNeededException : Exception
     {
     }
 }
+
+public class IncorrectCredentialsException : Exception
+{
+    public IncorrectCredentialsException()
+    {
+    }
+
+    public IncorrectCredentialsException(string? message) : base(message)
+    {
+    }
+
+    public IncorrectCredentialsException(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected IncorrectCredentialsException(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}
+
+public class IncorrectUsernameException : Exception
+{
+    public IncorrectUsernameException()
+    {
+    }
+
+    public IncorrectUsernameException(string? message) : base(message)
+    {
+    }
+
+    public IncorrectUsernameException(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected IncorrectUsernameException(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}
+
 public class UnknownAuthChallengeException : Exception
 {
     public UnknownAuthChallengeException()
