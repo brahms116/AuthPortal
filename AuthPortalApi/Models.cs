@@ -45,3 +45,52 @@ public class TokenResponseAto
         this.Token = Token;
     }
 }
+
+public class SignupAto
+{
+    [JsonPropertyName("email")]
+    public string Email { get; set; }
+
+    [JsonPropertyName("username")]
+    public string Username { get; set; }
+
+    public SignupAto(string username, string email)
+    {
+        Username = username;
+        Email = email;
+    }
+}
+
+public class SignupResponseAto {
+
+    [JsonPropertyName("username")]
+    public string Username { get; set; }
+
+    [JsonPropertyName("email")]
+    public string Email { get; set; }
+
+    [JsonPropertyName("userStatus")]
+    public string UserStatus { get; set; }
+
+    [JsonPropertyName("userCreateDate")]
+    public long UserCreateDate { get; set; }
+
+    public SignupResponseAto(string username, string email, string userStatus, long userCreateDate)
+    {
+        Username = username;
+        Email = email;
+        UserStatus = userStatus;
+        UserCreateDate = userCreateDate;
+    }
+}
+
+public class ForgotPasswordAto {
+
+    [JsonPropertyName("username")]
+    public string Username { get; set; }
+
+    public ForgotPasswordAto(string username)
+    {
+        Username = username;
+    }
+}

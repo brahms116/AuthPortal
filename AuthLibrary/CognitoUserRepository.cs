@@ -67,6 +67,10 @@ namespace AuthLibrary
 					UserCreateDate = new DateTimeOffset(result.User.UserCreateDate).ToUnixTimeSeconds()
 				};
 			}
+			catch (UsernameExistsException ex)
+			{
+				throw new UserAlreadyExistsException("Username already exists", ex);
+			}
 			catch (Exception ex)
 			{
 				throw new SignUpFailureException("Failed to sign up", ex);
@@ -226,6 +230,9 @@ namespace AuthLibrary
 			try
 			{
 				await _provider.ForgotPasswordAsync(request);
+			}
+			catch (UserNotFoundException ex) {
+				throw new IncorrectUsernameException("Failed to find user with specified username", ex);
 			}
 			catch (Exception ex)
 			{

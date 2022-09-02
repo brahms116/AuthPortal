@@ -24,6 +24,79 @@ namespace AuthPortalApi.Controllers
             _jwtService = jwtService;
         }
 
+        [HttpPost]
+        [Route("signup")]
+        public async Task<ActionResult<ApiResult<SignupResponseAto>>> Signup(SignupAto input)
+        {
+
+            try
+            {
+
+                var result = await _authService.CreateUser(input.Email, input.Username);
+
+                if (result is null)
+                {
+                    throw new NullReferenceException();
+                }
+
+                return new OkObjectResult(ApiResult<SignupResponseAto>.Ok(
+                        new SignupResponseAto(
+                            username: result.Username ?? throw new NullReferenceException(),
+                            userStatus: result.UserStatus ?? throw new NullReferenceException(),
+                            email: result.Email ?? throw new NullReferenceException(),
+                            userCreateDate: result.UserCreateDate ?? throw new NullReferenceException()
+                        )
+                     )
+                  );
+            }
+            catch (UserAlreadyExistsException)
+            {
+                return new OkObjectResult(
+                    ApiResult<SignupResponseAto>.Error(
+                            new NiaveWhoops
+                            {
+                                Context = "During Signup.",
+                                Reason = "The username is already taken",
+                                ErrType = "username-exists",
+                                Suggestion = "Try signing up with a different username",
+                            }
+                        )
+                    );
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("forgot-password")]
+        public async Task<ActionResult<ApiResult<string>>> ForgotPassword(ForgotPasswordAto input)
+        {
+            try
+            {
+                await _authService.ForgotPassword(input.Username);
+                return new OkObjectResult(ApiResult<string>.Ok("Success"));
+            }
+            catch (IncorrectUsernameException) { 
+                return new OkObjectResult(
+                    ApiResult<string>.Error(
+                            new NiaveWhoops
+                            {
+                                Context = "During forgot password.",
+                                Reason = "Provided username was not found",
+                                ErrType = "username-not-found",
+                                Suggestion = "Try putting in a valid username",
+                            }
+                        )
+                    );
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
         [HttpGet]
         [Route("token")]
         [Authorize]
@@ -35,7 +108,7 @@ namespace AuthPortalApi.Controllers
             if (string.IsNullOrEmpty(key))
             {
                 return new OkObjectResult(
-                    ApiResult<TokenResponseAto>.Error( 
+                    ApiResult<TokenResponseAto>.Error(
                             new NiaveWhoops
                             {
                                 Context = "Retrieving cognito token",
@@ -68,7 +141,7 @@ namespace AuthPortalApi.Controllers
 
             return new OkObjectResult(
                     ApiResult<TokenResponseAto>.Ok(
-                        new TokenResponseAto(Token:token)
+                        new TokenResponseAto(Token: token)
                     )
                 );
         }
