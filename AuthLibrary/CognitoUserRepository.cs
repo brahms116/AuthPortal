@@ -63,6 +63,7 @@ namespace AuthLibrary
 				return new CreateUserResponse()
 				{
 					Username = result.User.Username,
+					Email = email,
 					UserStatus = result.User.UserStatus,
 					UserCreateDate = new DateTimeOffset(result.User.UserCreateDate).ToUnixTimeSeconds()
 				};
@@ -204,11 +205,11 @@ namespace AuthLibrary
 			}
 			catch (InvalidPasswordException ex)
 			{
-				throw new PasswordValidationException("Password failed to meet constraints", ex);
+				throw new PasswordValidationException(ex.Message, ex);
 			}
 			catch (Exception ex)
 			{
-				throw new ChangePasswordFailureException("Failed to change password.", ex);
+				throw new ChangePasswordFailureException(ex.Message, ex);
 			}
 
 		}
@@ -237,7 +238,7 @@ namespace AuthLibrary
 			catch (Exception ex)
 			{
 
-				throw new ForgotPasswordFailureException("Failed to forget password.", ex);
+				throw new ForgotPasswordFailureException(ex.Message, ex);
 			}
 		}
 
@@ -274,12 +275,12 @@ namespace AuthLibrary
 
 			catch (InvalidPasswordException ex)
 			{
-				throw new PasswordValidationException("Password failed to meet constraints", ex);
+				throw new PasswordValidationException(ex.Message, ex);
 			}
 
 			catch (Exception ex)
 			{
-				throw new ConfirmForgotPasswordFailureException("Failed to confirm forgot password.", ex);
+				throw new ConfirmForgotPasswordFailureException(ex.Message, ex);
 			}
 
 		}

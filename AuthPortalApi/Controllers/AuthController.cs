@@ -25,6 +25,76 @@ namespace AuthPortalApi.Controllers
         }
 
         [HttpPost]
+        [Route("change-password")]
+        public async Task<ActionResult<ApiResult<ChangePasswordResponseAto>>> ChangePassword(ChangePasswordAto input)
+        {
+            try
+            {
+
+                await _authService.ChangePassword(input.Username, input.OldPassword, input.NewPassword);
+
+                return new OkObjectResult(
+                    ApiResult<ChangePasswordResponseAto>.Ok(
+                        new ChangePasswordResponseAto(username: input.Username)
+                    )
+
+                ); ;
+
+            }
+            catch (PasswordValidationException ex) {
+
+                return new OkObjectResult(ApiResult<ChangePasswordResponseAto>.Error(
+                        new NiaveWhoops { 
+                            Context = "During change password.",
+                            Reason = ex.Message,
+                            ErrType = "new-password-invalid",
+                            Suggestion = "Try a new password which meets the contraints",
+                        }
+                    ));
+            }
+
+            catch (Exception ex)
+            {
+
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("confirm-forgot-password")]
+        public async Task<ActionResult<ApiResult<ConfirmForgotPasswordResponseAto>>> ConfirmForgotPassword(ConfirmForgotPasswordAto input) {
+            try
+            {
+
+                await _authService.ConfirmForgotPassword(input.Username, input.NewPassword, input.ConfirmationCode);
+
+                return new OkObjectResult(ApiResult<object>.Ok(
+                    new ConfirmForgotPasswordResponseAto(username: input.Username)
+                )); 
+
+
+            }
+            catch (PasswordValidationException ex) { 
+                
+                return new OkObjectResult(ApiResult<object>.Error(
+                        new NiaveWhoops { 
+                            Context = "During change password.",
+                            Reason = ex.Message,
+                            ErrType = "new-password-invalid",
+                            Suggestion = "Try a new password which meets the contraints",
+                        }
+                    ));
+            }
+            catch (Exception ex)
+            {
+
+                return new BadRequestObjectResult(ex.Message);
+            }
+
+        }
+
+
+        [HttpPost]
         [Route("signup")]
         public async Task<ActionResult<ApiResult<SignupResponseAto>>> Signup(SignupAto input)
         {
@@ -41,10 +111,10 @@ namespace AuthPortalApi.Controllers
 
                 return new OkObjectResult(ApiResult<SignupResponseAto>.Ok(
                         new SignupResponseAto(
-                            username: result.Username ?? throw new NullReferenceException(),
-                            userStatus: result.UserStatus ?? throw new NullReferenceException(),
-                            email: result.Email ?? throw new NullReferenceException(),
-                            userCreateDate: result.UserCreateDate ?? throw new NullReferenceException()
+                            username: result.Username ?? "",
+                            userStatus: result.UserStatus ??"",
+                            email: result.Email ??"",
+                            userCreateDate: result.UserCreateDate ?? 0
                         )
                      )
                   );
@@ -71,14 +141,19 @@ namespace AuthPortalApi.Controllers
 
         [HttpPost]
         [Route("forgot-password")]
-        public async Task<ActionResult<ApiResult<string>>> ForgotPassword(ForgotPasswordAto input)
+        public async Task<ActionResult<ApiResult<ForgotPasswordResponseAto>>> ForgotPassword(ForgotPasswordAto input)
         {
             try
             {
                 await _authService.ForgotPassword(input.Username);
-                return new OkObjectResult(ApiResult<string>.Ok("Success"));
+                return new OkObjectResult(
+                    ApiResult<ForgotPasswordResponseAto>.Ok(
+                        new ForgotPasswordResponseAto(username: input.Username)
+                    )
+                );
             }
-            catch (IncorrectUsernameException) { 
+            catch (IncorrectUsernameException)
+            {
                 return new OkObjectResult(
                     ApiResult<string>.Error(
                             new NiaveWhoops
