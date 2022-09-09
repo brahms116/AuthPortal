@@ -8,7 +8,13 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["AuthPortalApi/AuthPortalApi.csproj", "AuthPortalApi/"]
+COPY ["ApiResult/ApiResultLibrary.csproj", "ApiResult/"]
+COPY ["AuthLibrary/AuthLibrary.csproj", "AuthLibrary/"]
+COPY ["CacheLibrary/CacheLibrary.csproj", "CacheLibrary/"]
+COPY ["JwtLibrary/JwtLibrary.csproj", "JwtLibrary/"]
+
 RUN dotnet restore "AuthPortalApi/AuthPortalApi.csproj"
+
 COPY . .
 WORKDIR "/src/AuthPortalApi"
 RUN dotnet build "AuthPortalApi.csproj" -c Release -o /app/build

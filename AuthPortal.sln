@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthPortalDemoClient", "AuthPortalDemoClient\AuthPortalDemoClient.csproj", "{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthLibrary", "AuthLibrary\AuthLibrary.csproj", "{0430E353-CB06-40E8-8FB1-624E7DBB3661}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CacheLibrary", "CacheLibrary\CacheLibrary.csproj", "{5C3D7B8A-0DEE-40AD-AA39-A5F0D35AB910}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CacheLibrary", "CacheLibrary\CacheLibrary.csproj", "{5C3D7B8A-0DEE-40AD-AA39-A5F0D35AB910}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtLibrary", "JwtLibrary\JwtLibrary.csproj", "{A487778E-FFDD-42FE-AD88-74521CA07091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtLibrary", "JwtLibrary\JwtLibrary.csproj", "{A487778E-FFDD-42FE-AD88-74521CA07091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiResultLibrary", "ApiResult\ApiResultLibrary.csproj", "{28F50B51-3B9F-405B-B42C-650D4A5B45CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiResultLibrary", "ApiResult\ApiResultLibrary.csproj", "{28F50B51-3B9F-405B-B42C-650D4A5B45CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthPortalApi", "AuthPortalApi\AuthPortalApi.csproj", "{7F46B022-E037-44AD-A496-4EC4CA3B77FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthPortalApi", "AuthPortalApi\AuthPortalApi.csproj", "{7F46B022-E037-44AD-A496-4EC4CA3B77FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D669E4FE-65D5-4BA2-B20A-E0B1FBF97536}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0430E353-CB06-40E8-8FB1-624E7DBB3661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0430E353-CB06-40E8-8FB1-624E7DBB3661}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0430E353-CB06-40E8-8FB1-624E7DBB3661}.Release|Any CPU.ActiveCfg = Release|Any CPU
