@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+     - echo Login to Amazon ECR
+     - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION )
+  build:
+    commands:
+      - echo Build stage
+      - docker build -t authportal:latest .
+      - docker tag authportal:latest 476915837883.dkr.ecr.ap-southeast-2.amazonaws.com/auth-portal:latest
+  post_build:
+    commands:
+      - echo Build completed
+      - echo pushing
+      - docker push 476915837883.dkr.ecr.ap-southeast-2.amazonaws.com/auth-portal:latest
